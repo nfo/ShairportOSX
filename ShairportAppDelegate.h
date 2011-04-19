@@ -10,11 +10,15 @@
 
 @interface ShairportAppDelegate : NSObject <NSApplicationDelegate> {
     NSStatusItem *statusItem;
+    NSImage *statusImageOn;
+    NSImage *statusImageOff;
     NSTask *shairport;
 }
 
 // @property (assign) IBOutlet NSStatusItem *statusItem;
 @property (assign) NSStatusItem *statusItem;
+@property (assign) NSImage *statusImageOn;
+@property (assign) NSImage *statusImageOff;
 @property (assign) NSTask *shairport;
 
 @end

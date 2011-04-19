@@ -15,14 +15,20 @@
 @implementation ShairportAppDelegate
 
 @synthesize statusItem;
+@synthesize statusImageOn;
+@synthesize statusImageOff;
 @synthesize shairport;
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification {
+    statusImageOn = [NSImage imageNamed:@"airportexpress_32.icns"];
+    statusImageOff = [NSImage imageNamed:@"airportexpressoff_32.icns"];
+    
     /* Setup *statusItem */
     NSStatusBar *statusbar = [NSStatusBar systemStatusBar];
     statusItem = [statusbar statusItemWithLength:NSVariableStatusItemLength];
     [statusItem retain];
-    [statusItem setTitle:@"♭"]; // ♩♪♫♬♭♮♯
+    // [statusItem setTitle:@"♭"]; // ♩♪♫♬♭♮♯
+    [statusItem setImage:statusImageOff];
     [statusItem setToolTip:@"Click to start/stop shairport.pl. Ctrl-click to quit."]; // ♩♪♫♬♭♮♯
     [statusItem setHighlightMode:YES];
     [statusItem setAction:@selector(startStopTaskOrQuit:)];
@@ -36,15 +42,14 @@
         [NSApp terminate:self];
     } else {
         if([shairport isRunning]){
-            // NSSound *systemSound = [NSSound soundNamed:@"Bottle"];
-            // [systemSound play];
+            [[NSSound soundNamed:@"Bottle"] play];
 
             [shairport terminate];
 
-            [statusItem setTitle:@"♭"];
+            //[statusItem setTitle:@"♭"];
+            [statusItem setImage:statusImageOff];
         } else {
-            // NSSound *systemSound = [NSSound soundNamed:@"Morse"];
-            // [systemSound play];
+            [[NSSound soundNamed:@"Morse"] play];
 
             shairport = [[NSTask alloc] init];
             NSString *bundlePath = [[NSBundle mainBundle] resourcePath];
@@ -57,7 +62,8 @@
             // [shairport setArguments: arguments];
             [shairport launch];
 
-            [statusItem setTitle:@"♫"];
+            //[statusItem setTitle:@"♫"];
+            [statusItem setImage:statusImageOn];
         }
     }
 }
