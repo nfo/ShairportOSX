@@ -1,0 +1,3 @@
+[submodule "shairport"]
+	path = shairport
+	url = https://github.com/albertz/shairport.git
