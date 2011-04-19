@@ -1,0 +1,7 @@
+//
+// Prefix header for all source files of the 'Shairport' target in the 'Shairport' project
+//
+
+#ifdef __OBJC__
+    #import <Cocoa/Cocoa.h>
+#endif
